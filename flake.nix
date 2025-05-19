@@ -32,6 +32,8 @@
 
             packages = with pkgs; [
               bashInteractive
+              git
+              git-annex
             ];
           };
         }
