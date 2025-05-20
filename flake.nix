@@ -25,6 +25,38 @@
         );
     in
     {
+      packages = forAllSystems (
+        { pkgs }:
+        rec {
+          paper = pkgs.stdenvNoCC.mkDerivation {
+            name = "paper";
+            src = ./paper;
+
+            buildInputs = with pkgs; [
+              (texlive.combine {
+                inherit (pkgs.texlive) scheme-minimal latex-bin latexmk;
+              })
+            ];
+
+            env = {
+              TEXMFHOME = "./cache";
+              TEXMFVAR = "./cache/texmf-var";
+            };
+
+            buildPhase = ''
+              latexmk -interaction=nonstopmode -pdf -lualatex document.tex
+            '';
+
+            installPhase = ''
+              mkdir -p $out
+              cp document.pdf $out
+            '';
+          };
+
+          default = paper;
+        }
+      );
+
       devShells = forAllSystems (
         { pkgs }:
         {
@@ -39,6 +71,6 @@
         }
       );
 
-      formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
+      formatter = forAllSystems ({ pkgs }: pkgs.nixfmt-tree);
     };
 }
