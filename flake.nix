@@ -28,38 +28,8 @@
       packages = forAllSystems (
         { pkgs }:
         rec {
-          paper = pkgs.stdenvNoCC.mkDerivation {
-            name = "paper";
-            src = ./.;
-
-            buildInputs = with pkgs; [
-              (texlive.combine {
-                inherit (pkgs.texlive) scheme-minimal latex-bin latexmk;
-              })
-              (python312.withPackages (
-                ps: with ps; [
-                  numpy
-                ]
-              ))
-            ];
-
-            env = {
-              TEXMFHOME = "./cache";
-              TEXMFVAR = "./cache/texmf-var";
-            };
-
-            buildPhase = ''
-              python ./code/main.py --data ./data/resolved --output ./paper/generated
-              cd paper
-              latexmk -interaction=nonstopmode -pdf -lualatex ./document.tex
-            '';
-
-            installPhase = ''
-              mkdir -p $out
-              cp document.pdf $out
-            '';
-          };
-
+          paper = pkgs.callPackage ./paper.nix { };
+          paperAnnex = pkgs.callPackage ./paper.nix { customData = ./data/resolved; };
           default = paper;
         }
       );
