@@ -49,7 +49,7 @@
             };
 
             buildPhase = ''
-              python ./code/main.py ./paper/generated
+              python ./code/main.py --data ./data/resolved --output ./paper/generated
               cd paper
               latexmk -interaction=nonstopmode -pdf -lualatex ./document.tex
             '';
