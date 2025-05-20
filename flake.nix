@@ -30,12 +30,17 @@
         rec {
           paper = pkgs.stdenvNoCC.mkDerivation {
             name = "paper";
-            src = ./paper;
+            src = ./.;
 
             buildInputs = with pkgs; [
               (texlive.combine {
                 inherit (pkgs.texlive) scheme-minimal latex-bin latexmk;
               })
+              (python312.withPackages (
+                ps: with ps; [
+                  numpy
+                ]
+              ))
             ];
 
             env = {
@@ -44,7 +49,9 @@
             };
 
             buildPhase = ''
-              latexmk -interaction=nonstopmode -pdf -lualatex document.tex
+              python ./code/main.py ./paper/generated
+              cd paper
+              latexmk -interaction=nonstopmode -pdf -lualatex ./document.tex
             '';
 
             installPhase = ''
