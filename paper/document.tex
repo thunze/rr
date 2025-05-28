@@ -1,11 +1,69 @@
-\documentclass[a4paper]{article}
+\documentclass{article}
 
 % To improve reproducibility, don't include certain metadata generated from the
 % system date and time.
-\pdfvariable suppressoptionalinfo \numexpr32+64+512\relax
+% \pdfvariable suppressoptionalinfo \numexpr32+64+512\relax
+
+% Language setting
+\usepackage[english]{babel}
+
+% Set page size and margins
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{geometry}
+
+% Set title, authr and date
+\title{\textbf{Migraines and Math Degrees: A Spurious Love Story}}
+\author{Researchers with a Sense of Humor}
+\date{May 28, 2025}
+
 
 \begin{document}
-  Hello, World!
+\maketitle
 
-  \input{./generated/example.tex}
+\begin{abstract}
+  In this groundbreaking investigation, we explore a striking and absolutely questionable correlation between the number of Master's degrees awarded in Mathematics and Statistics, and the frequency of Google searches for the phrase ``why do I have a migraine'' from 2012 to 2021. While the relationship is likely spurious, the implications for public health, education, and the cosmic balance of the universe are clearly profound.
+\end{abstract}
+
+\begin{section}{Introduction}
+ Correlations are everywhere---sometimes meaningful, other times hilariously coincidental. Inspired by the timeless wisdom of tylervigen.com, we delved into a curious trend: as the number of Master's degrees awarded in Mathematics and Statistics increases, so too does public interest in migraines, as measured by Google search queries.
+\end{section}
+
+\begin{section}{Data and Methods}
+ We utilized data featured by Tyler Vigen, drawn from publicly available sources:
+ \begin{itemize}
+   \item \textbf{Master's degrees awarded in Mathematics and Statistics}: National Center for Education Statistics.
+   \item \textbf{Google searches for ``why do I have a migraine''}: Google Trends.
+ \end{itemize}
+ The analysis covered the years 2012 through 2021. Pearson's correlation coefficient was used to measure the linear relationship, yielding a stunning $r = 0.9499$ with $r^2 = 0.9023$.
+\end{section}
+
+\begin{section}{Results}
+ The correlation coefficient of $r = 0.9499$ suggests an almost comically strong linear relationship. Approximately 90.2\% of the variation in migraine search frequency could be ``explained'' by math degree trends. The data paints a picture of synchronized suffering.
+\end{section}
+
+\begin{section}{Discussion}
+ Several hypotheses could explain this correlation:
+ \begin{itemize}
+   \item Pursuing a Master's degree in Mathematics and Statistics induces migraines.
+   \item Sufferers of migraines seek solace in rigorous mathematical study.
+   \item This is all an elaborate prank by the universe.
+ \end{itemize}
+ Clearly, none of these should be taken seriously. Except maybe the last one.
+\end{section}
+
+\begin{section}{Conclusion}
+ Is this correlation real? Yes. Is it meaningful? No. Should you change careers or question your reality because of it? Absolutely. But more than anything, remember: correlation is not causation—but it sure is fun.
+\end{section}
+
+\begin{section}{Acknowledgments}
+ We thank Tyler Vigen for inspiring this research and providing the data. We also thank our families for their patience as we spent countless hours analyzing this utterly ridiculous correlation.
+\end{section}
+
+% Include the generated file.
+\input{./generated/example.tex}
+
+
 \end{document}
