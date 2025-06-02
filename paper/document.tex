@@ -13,6 +13,9 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{geometry}
+\usepackage{csquotes}
+\usepackage[numbers]{natbib}
+\usepackage{float}
 
 % Set title, authr and date
 \title{\textbf{Migraines and Math Degrees: A Spurious Love Story}}
@@ -28,7 +31,7 @@
 \end{abstract}
 
 \begin{section}{Introduction}
- Correlations are everywhere---sometimes meaningful, other times hilariously coincidental. Inspired by the timeless wisdom of tylervigen.com, we delved into a curious trend: as the number of Master's degrees awarded in Mathematics and Statistics increases, so too does public interest in migraines, as measured by Google search queries.
+ Correlations are everywhere---sometimes meaningful, other times hilariously coincidental. Inspired by the timeless wisdom of tylervigen.com, we delved into a curious trend: as the number of Master's degrees awarded in Mathematics and Statistics increases, so too does public interest in migraines, as measured by Google search queries \cite{vigen_migraine}.
 \end{section}
 
 \begin{section}{Data and Methods}
@@ -41,7 +44,21 @@
 \end{section}
 
 \begin{section}{Results}
+
+
+
  The correlation coefficient of $r = 0.9499$ suggests an almost comically strong linear relationship. Approximately 90.2\% of the variation in migraine search frequency could be ``explained'' by math degree trends. The data paints a picture of synchronized suffering.
+
+ \begin{figure}[H]
+   \centering
+   \includegraphics[width=0.6\textwidth]{./generated/correlation_plot.png}
+   \caption{Spurious correlation between Master's degrees in Math/Stats and Google searches for ``why do I have a migraine,'' from tylervigen.com.}
+   \label{fig:correlation}
+ \end{figure}
+
+ % Include the generated file.
+ \input{./generated/correlation_results.tex}
+
 \end{section}
 
 \begin{section}{Discussion}
@@ -62,8 +79,12 @@
  We thank Tyler Vigen for inspiring this research and providing the data. We also thank our families for their patience as we spent countless hours analyzing this utterly ridiculous correlation.
 \end{section}
 
-% Include the generated file.
-\input{./generated/example.tex}
 
+\begin{thebibliography}{9}
+
+  \bibitem{vigen_migraine}
+  Vigen, T. (2024, February 13). \textit{Master's degrees awarded in Mathematics and Statistics correlates with Google searches for ``why do I have a migraine''}. Retrieved June 2, 2025, from \url{https://www.tylervigen.com/spurious/correlation/33216_masters-degrees-awarded-in-mathematics-and-statistics_correlates-with_google-searches-for-why-do-i-have-a-migraine}
+
+\end{thebibliography}
 
 \end{document}
