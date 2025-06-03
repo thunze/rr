@@ -21,12 +21,19 @@ stdenvNoCC.mkDerivation {
   src = ./.;
 
   buildInputs = [
-    (texlive.combine {
-      inherit (texlive) scheme-minimal latex-bin latexmk;
-    })
+    ((texlive.combine {
+      inherit (texlive) scheme-basic latex-bin latexmk;
+    }).withPackages (
+      ps: with ps; [
+        csquotes
+        float
+      ]
+    ))
     (python312.withPackages (
       ps: with ps; [
-        numpy scipy matplotlib
+        matplotlib
+        numpy
+        scipy
       ]
     ))
   ];
