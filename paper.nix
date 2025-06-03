@@ -26,7 +26,7 @@ stdenvNoCC.mkDerivation {
     })
     (python312.withPackages (
       ps: with ps; [
-        numpy
+        numpy, scipy, matplotlib
       ]
     ))
   ];

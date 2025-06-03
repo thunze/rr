@@ -64,8 +64,6 @@ def generate_files(data_dir: Path, output_dir: Path):
     plt.title("Comparison of Master's Degrees vs. Migraine Searches")
     plt.grid(True)
     fig.tight_layout()
-
-# Save
     
     # Define path where to save the figure
     filename = "correlation_plot.png"
@@ -73,8 +71,6 @@ def generate_files(data_dir: Path, output_dir: Path):
 
     # Save the plot
     plt.savefig(save_path)
-
-
 
 def calculate_correlation(array1, array2):
 
