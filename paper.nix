@@ -33,6 +33,7 @@ stdenvNoCC.mkDerivation {
       ps: with ps; [
         matplotlib
         numpy
+        openpyxl
         pandas
         scipy
       ]
