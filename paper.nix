@@ -56,6 +56,6 @@ stdenvNoCC.mkDerivation {
 
   installPhase = ''
     mkdir -p $out
-    cp document.pdf $out
+    cp document.pdf $out/migraines-math-degrees.pdf
   '';
 }

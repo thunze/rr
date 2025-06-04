@@ -32,7 +32,7 @@ Simply run the following command:
 nix build github:thunze/rr#paper
 ```
 
-You can find the built paper in `result/document.pdf`.
+You can find the built paper in `result/migraines-math-degrees.pdf`.
 
 ### 2. Using git-annex
 
@@ -64,4 +64,4 @@ Finally, build the paper:
 nix build .#paperAnnex
 ```
 
-You can find the built paper in `result/document.pdf`.
+You can find the built paper in `result/migraines-math-degrees.pdf`.
