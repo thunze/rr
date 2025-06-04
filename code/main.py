@@ -32,21 +32,14 @@ def generate_files(data_dir: Path, output_dir: Path):
 
 def read_data_and_clean_data(data_dir):
     """Read and clean data from the specified directory."""
-    # Read the CSV file
+    # Read the google trends "why do I have a migrane data" file into a DataFrame
     csv_file = data_dir / "multiTimeline.csv"
-    if not csv_file.exists():
-        raise FileNotFoundError(f"{csv_file} does not exist.")
-
-    # read the google trends "why do I have a migrane data" file into a DataFrame
     google_data = pd.read_csv(csv_file, skiprows=1)
     if google_data.empty:
         raise ValueError("multiTimeline.csv is empty")
 
     # Read the nces master degree data file into a DataFrame
     excel_file = data_dir / "tabn323.10.xlsx"
-    if not excel_file.exists():
-        raise FileNotFoundError(f"{excel_file} does not exist.")
-
     nces_data = pd.read_excel(
         excel_file, sheet_name="Digest 2022 Table 323.10", skiprows=2
     )
