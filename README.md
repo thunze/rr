@@ -1,5 +1,7 @@
 # Reproducible Research
 
+A pre-built version of this paper is available [here](https://github.com/thunze/rr/blob/1.0/migraines-math-degrees.pdf).
+
 ## Requirements
 
 - An operating system / platform that supports Nix (Linux, macOS, Windows via WSL)
