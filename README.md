@@ -82,8 +82,8 @@ This paper aims to be bit-for-bit reproducible, meaning that the same source cod
 
 To verify this, you can check the output of the build (currently, the PDF file) against known good hashes in `result.SUMS` by running:
 
-- `nix build github:thunze/rr/1.0#verifyResult` if you used method 1 (pure Nix build).
-- `nix build .#verifyResultAnnex` if you used method 2 (Nix build with data fetched using git-annex).
+- `nix run github:thunze/rr/1.0#verifyResult` if you used method 1 (pure Nix build).
+- `nix run .#verifyResultAnnex` if you used method 2 (Nix build with data fetched using git-annex).
 
 If the verification is successful, you should see the following output:
 
