@@ -32,14 +32,12 @@ There are two main ways to build the paper:
 1. Using data fetched from the internet using Nix.
 2. Using data fetched from the internet using [git-annex](https://git-annex.branchable.com/).
 
-**TODO:** Add commit revision
-
 ### 1. Using Nix
 
 Simply run the following command:
 
 ```sh
-nix build github:thunze/rr#paper
+nix build github:thunze/rr/1.0#paper
 ```
 
 You can find the built paper in `result/migraines-math-degrees.pdf`.
@@ -49,9 +47,9 @@ You can find the built paper in `result/migraines-math-degrees.pdf`.
 First clone the repository and navigate to the cloned directory:
 
 ```sh
-git clone https://github.com/thunze/rr.git
+git clone --branch 1.0 https://github.com/thunze/rr.git
 # Or using SSH:
-# git clone git@github.com:thunze/rr.git
+# git clone --branch 1.0 git@github.com:thunze/rr.git
 cd rr
 ```
 
@@ -82,7 +80,7 @@ This paper aims to be bit-for-bit reproducible, meaning that the same source cod
 
 To verify this, you can check the output of the build (currently, the PDF file) against known good hashes in `result.SUMS` by running:
 
-- `nix build github:thunze/rr#verifyResult` if you used method 1 (pure Nix build).
+- `nix build github:thunze/rr/1.0#verifyResult` if you used method 1 (pure Nix build).
 - `nix build .#verifyResultAnnex` if you used method 2 (Nix build with data fetched using git-annex).
 
 If the verification is successful, you should see the following output:
