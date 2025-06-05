@@ -9,11 +9,21 @@
 - [Git](https://git-scm.com/)
   - Last tested using [version 2.49.0](https://mirrors.edge.kernel.org/pub/software/scm/git/)
 
+Nix can be installed using the following command:
+
+```sh
+sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
+```
+
+For more information on installing Nix, see the [Nix installation guide](https://nix.dev/manual/nix/stable/quick-start).
+
 Building the paper also requires you to have [Nix flakes](https://nixos.wiki/wiki/Flakes) enabled. To do this, add the following line to your Nix configuration file (at `~/.config/nix/nix.conf` or `/etc/nix/nix.conf`):
 
 ```conf
 experimental-features = nix-command flakes
 ```
+
+If the file does not exist, you will need to create it first.
 
 ## Building the paper
 
