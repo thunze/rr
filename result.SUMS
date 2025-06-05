@@ -1,0 +1,4 @@
+%%%% HASHDEEP-1.0
+%%%% size,md5,sha256,filename
+## $ hashdeep -r -l .
+115522,6ab57643e0772c5c2f63c399028d53aa,423f2f090a45f91566103c8c44eb072c1dc4e0c2d68d9a638f5f03180a287cbc,./migraines-math-degrees.pdf

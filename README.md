@@ -65,3 +65,24 @@ nix build .#paperAnnex
 ```
 
 You can find the built paper in `result/migraines-math-degrees.pdf`.
+
+## Verifying the build
+
+This paper aims to be bit-for-bit reproducible, meaning that the same source code and data should produce the same output every time it is built.
+
+To verify this, you can check the output of the build (currently, the PDF file) against known good hashes in `result.SUMS` by running:
+
+- `nix build github:thunze/rr#verifyResult` if you used method 1 (pure Nix build).
+- `nix build .#verifyResultAnnex` if you used method 2 (Nix build with data fetched using git-annex).
+
+If the verification is successful, you should see the following output:
+
+```
+hashdeep: Audit passed
+          Files matched: 1
+Files partially matched: 0
+            Files moved: 0
+        New files found: 0
+  Known files not found: 0
+```
+

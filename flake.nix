@@ -28,8 +28,20 @@
       packages = forAllSystems (
         { pkgs }:
         rec {
+          # Generate the paper
           paper = pkgs.callPackage ./paper.nix { };
           paperAnnex = pkgs.callPackage ./paper.nix { customData = ./data/resolved; };
+
+          # Check integrity of the generated paper
+          verifyResult = pkgs.writeShellScriptBin "verify-result" ''
+            cd ${paper}
+            ${pkgs.hashdeep}/bin/hashdeep -alv -k ${./result.SUMS} -r .
+          '';
+          verifyResultAnnex = pkgs.writeShellScriptBin "verify-result-annex" ''
+            cd ${paper}
+            ${pkgs.hashdeep}/bin/hashdeep -alv -k ${./result.SUMS} -r .
+          '';
+
           default = paper;
         }
       );
