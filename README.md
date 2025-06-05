@@ -94,6 +94,10 @@ Files partially matched: 0
   Known files not found: 0
 ```
 
+## Rationale for using Nix
+
+Nix is used in this project to ensure that the build environment is reproducible and consistent across different systems. It allows us to specify exact versions of dependencies and tools, which helps avoid issues related to differing software versions or configurations. [Nixpkgs](https://github.com/NixOS/nixpkgs) also applies specific patches to the TeX Live distribution it provides to ensure that built PDFs are reproducible, which aids in achieving bit-for-bit reproducibility.
+
 ## License
 
 This project is licensed as follows:
