@@ -96,3 +96,11 @@ Files partially matched: 0
   Known files not found: 0
 ```
 
+## License
+
+This project is licensed as follows:
+
+- All source code files in this repository are licensed under the [The Unlicense](https://unlicense.org/) (SPDX identifier: `Unlicense`). See the `LICENSE` file for the full license text.
+- The generated paper is licensed under the [CC0 1.0 Universal license](https://creativecommons.org/publicdomain/zero/1.0/) (SPDX identifier: `CC0-1.0`). See the `LICENSE-paper` file for the full license text.
+- The licensing of the Google Trends data is described in the [Google Terms of Service](https://web.archive.org/web/20250604045244/https://policies.google.com/terms).
+- The NCES data is placed in the public domain by the U.S. Department of Education, as described in 17 U.S. Code § 105.
