@@ -29,6 +29,37 @@ def generate_files(data_dir: Path, output_dir: Path):
     # Create and save the plot
     create_and_save_plot(nces_data, google_data, output_dir)
 
+    # calculate year-to-year changes
+    nces_yearly_changes = np.diff(nces_data)
+    google_yearly_changes = np.diff(google_data)
+
+    # calculate correlations for year-to-year changes
+    correlation_changes, r_squared_changes, p_value_changes = calculate_correlation(
+        nces_yearly_changes, google_yearly_changes
+    )
+
+    # Write the year-to-year correlation results to a file
+    save_correlation_results(
+        correlation_changes,
+        r_squared_changes,
+        p_value_changes,
+        output_dir,
+        "yearly_changes_",
+    )
+
+    create_and_save_yearly_changes_plot(
+        nces_yearly_changes, google_yearly_changes, output_dir
+    )
+
+    # Normalize the data
+    nces_data_normalized = (nces_data - np.mean(nces_data)) / np.std(nces_data)
+    google_data_normalized = (google_data - np.mean(google_data)) / np.std(google_data)
+    # create linear regrsesion for comparison
+    plot_linear_regression(nces_data_normalized, google_data_normalized, output_dir)
+
+
+
+
 
 def read_data_and_clean_data(data_dir):
     """Read and clean data from the specified directory."""
@@ -106,18 +137,18 @@ def read_data_and_clean_data(data_dir):
     return google_np, nces_np
 
 
-def save_correlation_results(correlation, r_squared, p_value, output_dir):
+def save_correlation_results(correlation, r_squared, p_value, output_dir, filePrefix=""):
     """Save the correlation results to files."""
-    with (output_dir / "correlation_value.tex").open("w") as file:
+    with (output_dir / f"{filePrefix}correlation_value.tex").open("w") as file:
         file.write(f"{correlation:.4f}")
 
-    with (output_dir / "r_squared_value.tex").open("w") as file:
+    with (output_dir / f"{filePrefix}r_squared_value.tex").open("w") as file:
         file.write(f"{r_squared:.4f}")
 
-    with (output_dir / "r_squared_percentage_value.tex").open("w") as file:
+    with (output_dir / f"{filePrefix}r_squared_percentage_value.tex").open("w") as file:
         file.write(f"{r_squared * 100:.2f}\\%")
 
-    with (output_dir / "p_value.tex").open("w") as file:
+    with (output_dir / f"{filePrefix}p_value.tex").open("w") as file:
         file.write(f"{p_value:.4g}")
 
 
@@ -125,7 +156,7 @@ def create_and_save_plot(array1, array2, output_dir):
     """Create and save a plot comparing two arrays."""
     fig, ax1 = plt.subplots(figsize=(10, 6))
 
-    # Example arrays for correlation calculation
+    # Titles for correlation plots
     nces_data_name = "Master's degrees awarded in Mathematics and statistics"
     google_data_name = "Google searches for 'why do i have a migraine'"
 
@@ -142,12 +173,81 @@ def create_and_save_plot(array1, array2, output_dir):
 
     # X-axis
     ax1.set_xlabel("Index (e.g., Year or Observation Number)")
-    plt.title("Comparison of Two Data Series")
+    plt.title("Comparison of Master's Degrees and Google Searches")
     plt.grid(True)
     fig.tight_layout()
 
     # Save the plot
     filename = "correlation_plot.png"
+    save_path = os.path.join(output_dir, filename)
+    plt.savefig(save_path)
+
+    # Close the plot to free up memory
+    plt.close(fig)
+
+def plot_linear_regression(x, y, output_dir, filename="linear_regression_plot.png"):
+    years = np.arange(len(x))
+    slope1, _, _, _, _ = stats.linregress(years, x)
+    slope2, _, _, _, _ = stats.linregress(years, y)
+
+    # save linear regression slope values
+    with (output_dir / "nces_slope_value.tex").open("w") as file:
+        file.write(f"{slope1:.4f}")
+    with (output_dir / "google_slope_value.tex").open("w") as file:
+        file.write(f"{slope2:.4f}")
+
+    
+
+    fig, ax1 = plt.subplots(figsize=(10, 6))
+    ax1.plot(years, x, "o-", color="tab:blue", label="Normalized NCES Data")
+    ax1.plot(years, slope1 * years, color="tab:blue", linestyle="--", label="Normalized NCES Trend")
+    ax1.set_ylabel("NCES Data", color="tab:blue")
+
+    ax2 = ax1.twinx()
+    ax2.plot(years, y, "o-", color="tab:red", label="Normalized Google Trends Data")
+    ax2.plot(years, slope2 * years, color="tab:red", linestyle="--", label="Normalized Google Trend")
+    ax2.set_ylabel("Google Trends Data", color="tab:red")
+
+    ax1.set_xlabel("Year")
+    ax1.set_title("Normalized Linear Regression Comparison")
+    ax1.legend(loc="upper left")
+    ax2.legend(loc="upper center")
+
+    plt.grid(True)
+    fig.tight_layout()
+    # Save the linear regression plot
+    save_path = os.path.join(output_dir, filename)
+    plt.savefig(save_path)
+    # Close the plot to free up memory
+    plt.close(fig)
+
+def create_and_save_yearly_changes_plot(array1, array2, output_dir):
+    """Create and save a plot comparing the yearly changse."""
+    fig, ax1 = plt.subplots(figsize=(10, 6))
+
+    # Example arrays for correlation calculation
+    nces_data_name = "Master's degrees awarded in Mathematics and statistics yearly changes"
+    google_data_name = "Google searches for 'why do i have a migraine' yearly changes"
+
+    # Primary y-axis
+    ax1.plot(array1, "o-", color="tab:blue", label=nces_data_name)
+    ax1.set_ylabel(nces_data_name, color="tab:blue")
+    ax1.tick_params(axis="y", labelcolor="tab:blue")
+
+    # Secondary y-axis
+    ax2 = ax1.twinx()
+    ax2.plot(array2, "s--", color="tab:red", label=google_data_name)
+    ax2.set_ylabel(google_data_name, color="tab:red")
+    ax2.tick_params(axis="y", labelcolor="tab:red")
+
+    # X-axis
+    ax1.set_xlabel("Index (Year)")
+    plt.title("Comparison of yearly changes")
+    plt.grid(True)
+    fig.tight_layout()
+
+    # Save the plot
+    filename = "yearly_changes_correlation_plot.png"
     save_path = os.path.join(output_dir, filename)
     plt.savefig(save_path)
 
