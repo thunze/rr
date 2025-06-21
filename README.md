@@ -1,7 +1,5 @@
 # Reproducible Research
 
-## Introduction
-
 This repository contains the code for the fictional paper “Migraines and Math Degrees: A Spurious Love Story”, as well as the paper itself and all necessary files to generate a PDF version of the paper in a reproducible manner.
 
 To build the paper, we use the [Nix package manager](https://nixos.org/download/) to ensure that the environment in which the paper is built is consistent across different systems. The tools and packages required in the build process are fetched automatically by the Nix package manager from the [Nixpkgs](https://github.com/NixOS/nixpkgs) repository, which is the official package repository for Nix. In particular, these tools include LaTeX for typesetting the paper and Python, along with several Python packages, for processing the data and generating plots.
@@ -18,7 +16,7 @@ To get started with reproducing the paper, you can follow the instructions below
 
 - [Git](https://git-scm.com/)
   - Last tested using [version 2.49.0](https://mirrors.edge.kernel.org/pub/software/scm/git/)
-- The [Nix package manager](https://nixos.org/download/)
+- [Nix, the package manager](https://nixos.org/download/)
   - Last tested using [version 2.25.3](https://releases.nixos.org/?prefix=nix/nix-2.25.3/)
 
 ### Platform requirements
@@ -52,7 +50,7 @@ In the following sections of this guide, please follow the instructions for Linu
 Please head to the [Git downloads page](https://git-scm.com/downloads) and select your platform. Follow the instructions provided there to install Git.
 
 > [!TIP]
-> If you are using WSL, you can install Git by running the following command in your Linux shell: `sudo apt install git`. You may need to enter your Linux user password to allow the installation to proceed.
+> If you are using **WSL**, you can install Git by running the following command in your Linux shell: `sudo apt install git`. You may need to enter your Linux user password to allow the installation to proceed.
 
 ### Installing Nix
 
@@ -98,7 +96,7 @@ nix build github:thunze/rr/1.1#paper
 You can find the built paper in `result/migraines-math-degrees.pdf`.
 
 > [!TIP]
-> If you are using WSL and you want to view the PDF file in your Windows environment, open Windows Explorer and navigate to the `\\wsl$\Ubuntu\home\<your-linux-username>` directory, where `<your-linux-username>` is your Linux user account name. Here, you should find the `result` directory containing the built PDF file.
+> If you are using **WSL** and you want to view the PDF file in your Windows environment, open Windows Explorer and navigate to the `\\wsl$\Ubuntu\home\<your-linux-username>` directory, where `<your-linux-username>` is your Linux user account name. Here, you should find the `result` directory containing the built PDF file.
 
 ### 2. Using git-annex
 
