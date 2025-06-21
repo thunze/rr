@@ -38,7 +38,7 @@
             ${pkgs.hashdeep}/bin/hashdeep -alv -k ${./result.SUMS} -r .
           '';
           verifyResultAnnex = pkgs.writeShellScriptBin "verify-result-annex" ''
-            cd ${paper}
+            cd ${paperAnnex}
             ${pkgs.hashdeep}/bin/hashdeep -alv -k ${./result.SUMS} -r .
           '';
 
