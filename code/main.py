@@ -160,19 +160,24 @@ def create_and_save_plot(array1, array2, output_dir):
     nces_data_name = "Master's degrees awarded in Mathematics and statistics"
     google_data_name = "Google searches for 'why do i have a migraine'"
 
+    # Define the years corresponding to the data points
+    years = np.arange(2012, 2012 + len(array1))
+
     # Primary y-axis
-    ax1.plot(array1, "o-", color="tab:blue", label=nces_data_name)
+    ax1.plot(years, array1, "o-", color="tab:blue", label=nces_data_name)
     ax1.set_ylabel(nces_data_name, color="tab:blue")
     ax1.tick_params(axis="y", labelcolor="tab:blue")
 
     # Secondary y-axis
     ax2 = ax1.twinx()
-    ax2.plot(array2, "s--", color="tab:red", label=google_data_name)
+    ax2.plot(years, array2, "s--", color="tab:red", label=google_data_name)
     ax2.set_ylabel(google_data_name, color="tab:red")
     ax2.tick_params(axis="y", labelcolor="tab:red")
 
     # X-axis
-    ax1.set_xlabel("Index (e.g., Year or Observation Number)")
+    ax1.set_xlabel("Year")
+    ax1.set_xticks(years)
+    ax1.set_xticklabels([str(year) for year in years])
     plt.title("Comparison of Master's Degrees and Google Searches")
     plt.grid(True)
     fig.tight_layout()
@@ -186,9 +191,9 @@ def create_and_save_plot(array1, array2, output_dir):
     plt.close(fig)
 
 def plot_linear_regression(x, y, output_dir, filename="linear_regression_plot.png"):
-    years = np.arange(len(x))
-    slope1, _, _, _, _ = stats.linregress(years, x)
-    slope2, _, _, _, _ = stats.linregress(years, y)
+    index = np.arange(len(x))
+    slope1, _, _, _, _ = stats.linregress(index, x)
+    slope2, _, _, _, _ = stats.linregress(index, y)
 
     # save linear regression slope values
     with (output_dir / "nces_slope_value.tex").open("w") as file:
@@ -196,17 +201,17 @@ def plot_linear_regression(x, y, output_dir, filename="linear_regression_plot.pn
     with (output_dir / "google_slope_value.tex").open("w") as file:
         file.write(f"{slope2:.4f}")
 
-    
+    years = np.arange(2012, 2012 + len(x))
 
     fig, ax1 = plt.subplots(figsize=(10, 6))
     ax1.plot(years, x, "o-", color="tab:blue", label="Normalized NCES Data")
-    ax1.plot(years, slope1 * years, color="tab:blue", linestyle="--", label="Normalized NCES Trend")
-    ax1.set_ylabel("NCES Data", color="tab:blue")
+    ax1.plot(years, slope1 * index, color="tab:blue", linestyle="--", label="Normalized NCES Data Trend")
+    ax1.set_ylabel("Master's degrees awarded in Mathematics and statistics yearly changes\n(NCES Data)", color="tab:blue")
 
     ax2 = ax1.twinx()
-    ax2.plot(years, y, "o-", color="tab:red", label="Normalized Google Trends Data")
-    ax2.plot(years, slope2 * years, color="tab:red", linestyle="--", label="Normalized Google Trend")
-    ax2.set_ylabel("Google Trends Data", color="tab:red")
+    ax2.plot(years, y, "o-", color="tab:red", label="Normalized Google searches")
+    ax2.plot(years, slope2 * index, color="tab:red", linestyle="--", label="Normalized Google searches Trend")
+    ax2.set_ylabel("Google searches for 'why do i have a migraine'\n(Google Searches)", color="tab:red")
 
     ax1.set_xlabel("Year")
     ax1.set_title("Normalized Linear Regression Comparison")
@@ -225,23 +230,26 @@ def create_and_save_yearly_changes_plot(array1, array2, output_dir):
     """Create and save a plot comparing the yearly changse."""
     fig, ax1 = plt.subplots(figsize=(10, 6))
 
+    # years corresponding to the data points
+    years = np.arange(2012, 2012 + len(array1))
+
     # Example arrays for correlation calculation
     nces_data_name = "Master's degrees awarded in Mathematics and statistics yearly changes"
     google_data_name = "Google searches for 'why do i have a migraine' yearly changes"
 
     # Primary y-axis
-    ax1.plot(array1, "o-", color="tab:blue", label=nces_data_name)
+    ax1.plot(years, array1, "o-", color="tab:blue", label=nces_data_name)
     ax1.set_ylabel(nces_data_name, color="tab:blue")
     ax1.tick_params(axis="y", labelcolor="tab:blue")
 
     # Secondary y-axis
     ax2 = ax1.twinx()
-    ax2.plot(array2, "s--", color="tab:red", label=google_data_name)
+    ax2.plot(years, array2, "s--", color="tab:red", label=google_data_name)
     ax2.set_ylabel(google_data_name, color="tab:red")
     ax2.tick_params(axis="y", labelcolor="tab:red")
 
     # X-axis
-    ax1.set_xlabel("Index (Year)")
+    ax1.set_xlabel("Year")
     plt.title("Comparison of yearly changes")
     plt.grid(True)
     fig.tight_layout()

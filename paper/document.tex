@@ -2,7 +2,7 @@
 
 % To improve reproducibility, don't include certain metadata generated from the
 % system date and time.
-\pdfvariable suppressoptionalinfo \numexpr32+64+512\relax
+% \pdfvariable suppressoptionalinfo \numexpr32+64+512\relax
 
 % Language setting
 \usepackage[english]{babel}
@@ -17,10 +17,14 @@
 \usepackage[numbers]{natbib}
 \usepackage{float}
 
+\newcommand\minput[1]{%
+  \input{#1}%
+  \ifhmode\ifnum\lastnodetype=11 \unskip\fi\fi}
+
 % Set title, author and date
 \title{\textbf{Migraines and Math Degrees: A Spurious Love Story}}
 \author{Tilmann Diepenbruck (tdiepenb) \and Tom Hunze (thunze)}
-\date{May 28, 2025}
+\date{June 24, 2025}
 
 
 \begin{document}
@@ -40,17 +44,17 @@
    \item \textbf{Master's degrees awarded in Mathematics and Statistics}: National Center for Education Statistics. \cite{nc_es}
    \item \textbf{Google searches for ``why do I have a migraine''}: Google Trends. \cite{google_trends}
  \end{itemize}
- The analysis covered the years 2012 through 2021. Pearson's correlation coefficient was used to measure the linear relationship, yielding a stunning correlation of $r =$ \input{generated/correlation_value.tex}, with $r^2 =$ \input{generated/r_squared_value.tex} and $p$-value of \input{generated/p_value.tex}.
+ The analysis covered the years 2012 through 2021. Pearson's correlation coefficient was used to measure the linear relationship, yielding a stunning correlation of $r =$ \minput{generated/correlation_value.tex}, with $r^2 =$ \minput{generated/r_squared_value.tex} and $p$-value of \minput{generated/p_value.tex}.
 
- We also performed a normalized linear regression analysis to quantify the relationship between the two variables. The estimated slope for the number of Master's degrees awarded in Mathematics and Statistics is \input{generated/nces_slope_value.tex}, while the slope for Google searches for ``why do I have a migraine'' is \input{generated/google_slope_value.tex}. These slopes represent the average change in each variable per unit increase in the other, after normalization.
+ We also performed a normalized linear regression analysis to quantify the relationship between the two variables. The estimated slope for the number of Master's degrees awarded in Mathematics and Statistics is \minput{generated/nces_slope_value.tex}, while the slope for Google searches for ``why do I have a migraine'' is \minput{generated/google_slope_value.tex}. These slopes represent the average change in each variable per unit increase in the other, after normalization.
 
- To further probe the dynamics of the relationship, we also computed the year-over-year changes in both datasets. This first-difference analysis captures how annual fluctuations in math degrees and migraine-related searches align. The correlation between these yearly changes resulted in $r =$ \input{generated/yearly_changes_correlation_value.tex}, $r^2 =$ \input{generated/yearly_changes_r_squared_value.tex}, and a $p$-value of \input{generated/yearly_changes_p_value.tex}.
+ To further probe the dynamics of the relationship, we also computed the year-over-year changes in both datasets. This first-difference analysis captures how annual fluctuations in math degrees and migraine-related searches align. The correlation between these yearly changes resulted in $r =$ \minput{generated/yearly_changes_correlation_value.tex}, $r^2 =$ \minput{generated/yearly_changes_r_squared_value.tex}, and a $p$-value of \minput{generated/yearly_changes_p_value.tex}.
 \end{section}
 
 \pagebreak
 
 \begin{section}{Results}
- The correlation coefficient of \input{generated/correlation_value.tex} suggests an almost comically strong linear relationship. Approximately \input{generated/r_squared_percentage_value.tex} of the variation in migraine search frequency could be ``explained'' by math degree trends. The data paints a picture of synchronized suffering.
+ The correlation coefficient of \minput{generated/correlation_value.tex} suggests an almost comically strong linear relationship. Approximately \minput{generated/r_squared_percentage_value.tex} of the variation in migraine search frequency could be ``explained'' by math degree trends. The data paints a picture of synchronized suffering.
 
  \begin{figure}[H]
    \centering
@@ -59,7 +63,7 @@
    \label{fig:correlation}
  \end{figure}
 
- The normalized linear regression analysis yielded the following estimated slopes: \input{generated/nces_slope_value.tex} for the number of Master's degrees awarded in Mathematics and Statistics, and \input{generated/google_slope_value.tex} for Google searches for ``why do I have a migraine''. These slopes indicate that, on average, a one standard deviation increase in one variable is associated with an increase of approximately \input{generated/google_slope_value.tex} (for Google searches) or \input{generated/nces_slope_value.tex} (for degrees) standard deviations in the other variable, after normalization. This quantifies the strength of the association observed in the data.
+ The normalized linear regression analysis yielded the following estimated slopes: \minput{generated/nces_slope_value.tex} for the number of Master's degrees awarded in Mathematics and Statistics, and \minput{generated/google_slope_value.tex} for Google searches for ``why do I have a migraine''. These slopes indicate that, on average, a one standard deviation increase in one variable is associated with an increase of approximately \minput{generated/google_slope_value.tex} (for Google searches) or \minput{generated/nces_slope_value.tex} (for degrees) standard deviations in the other variable, after normalization. This quantifies the strength of the association observed in the data.
 
  \begin{figure}[H]
    \centering
@@ -68,7 +72,7 @@
    \label{fig:linear_regression}
  \end{figure}
 
- Additionally, the analysis of yearly changes reveals a much weaker relationship. The correlation drops to \input{generated/yearly_changes_correlation_value.tex}, with $r^2 =$ \input{generated/yearly_changes_r_squared_value.tex} (just \input{generated/yearly_changes_r_squared_percentage_value.tex} explained variance) and a $p$-value of \input{generated/yearly_changes_p_value.tex}. These values indicate that the apparent connection in the original data does not persist when examining year-over-year trends, further supporting the spurious nature of the correlation.
+ Additionally, the analysis of yearly changes reveals a much weaker relationship. The correlation drops to \minput{generated/yearly_changes_correlation_value.tex}, with $r^2 =$ \minput{generated/yearly_changes_r_squared_value.tex} (just \minput{generated/yearly_changes_r_squared_percentage_value.tex} explained variance) and a $p$-value of \minput{generated/yearly_changes_p_value.tex}. These values indicate that the apparent connection in the original data does not persist when examining year-over-year trends, further supporting the spurious nature of the correlation.
 
  \begin{figure}[H]
    \centering
