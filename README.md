@@ -36,7 +36,7 @@ If you are using Windows, you will need to install WSL (Windows Subsystem for Li
 You must be running Windows 11 version 2004 and higher (Build 19041 and higher) or Windows 11 to use the following instructions to install WSL and set up a Linux distribution.
 
 1. Open a Windows Terminal or PowerShell as an **administrator** by searching for _Windows Terminal_ or _PowerShell_ in the Start menu, right-clicking on it, and selecting _Run as administrator_.
-2. Enter the `wsl --install -d Ubuntu` command to install WSL (if it isn't already installed) and set up the Ubuntu Linux distribution.
+2. Enter the `wsl --install -d Ubuntu-22.04` command to install WSL (if it isn't already installed) and set up the Ubuntu Linux distribution.
 3. If WSL isn't already installed, this command will also enable the required Windows features and download the necessary components to run WSL. In that case, it will prompt you to restart your computer to complete the installation. After the restart, open _Ubuntu_ from the Start menu to complete the setup.
 4. After the installation is complete and Ubuntu has been launched, WSL will prompt you to enter a username and password for your new Linux user account. Choose a username and password that you will remember, as you will use these to log in to your WSL environment. Note that this account is not related to your Windows user account.
 5. Once the setup is complete, you can use the Linux shell to run commands.
@@ -96,7 +96,7 @@ nix build github:thunze/rr/1.1#paper
 You can find the built paper in `result/migraines-math-degrees.pdf`.
 
 > [!TIP]
-> If you are using **WSL** and you want to view the PDF file in your Windows environment, open Windows Explorer and navigate to the `\\wsl$\Ubuntu\home\<your-linux-username>` directory, where `<your-linux-username>` is your Linux user account name. Here, you should find the `result` directory containing the built PDF file.
+> If you are using **WSL** and you want to view the PDF file in your Windows environment, open Windows Explorer and navigate to the `\\wsl$\Ubuntu\home\<your-linux-username>` directory, where `<your-linux-username>` is your Linux user account name. If you executed the `nix build github:thunze/rr/1.1#paper` command in this directory, you should find the `result` directory containing the built PDF file here. Otherwise navigate to the directory where you executed the command.
 
 ### 2. Using git-annex
 
