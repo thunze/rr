@@ -1,10 +1,11 @@
 import argparse
-from pathlib import Path
-import numpy as np
-from scipy import stats
-import matplotlib.pyplot as plt
 import os
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+from scipy import stats
 
 
 def generate_files(data_dir: Path, output_dir: Path):
@@ -58,9 +59,6 @@ def generate_files(data_dir: Path, output_dir: Path):
     plot_linear_regression(nces_data_normalized, google_data_normalized, output_dir)
 
 
-
-
-
 def read_data_and_clean_data(data_dir):
     """Read and clean data from the specified directory."""
     # Read the google trends "why do I have a migrane data" file into a DataFrame
@@ -112,7 +110,8 @@ def read_data_and_clean_data(data_dir):
         nces_data["Field of study"] == "Mathematics and statistics"
     ]
 
-    # Select columns for 2011-12 through 2020-21 (which correspond to columns 10 through 19)
+    # Select columns for 2011-12 through 2020-21 (which correspond to columns 10
+    # through 19)
     year_columns = list(range(10, 20))
     filtered_math_stats_by_year = math_stats_row[year_columns]
 
@@ -137,7 +136,9 @@ def read_data_and_clean_data(data_dir):
     return google_np, nces_np
 
 
-def save_correlation_results(correlation, r_squared, p_value, output_dir, filePrefix=""):
+def save_correlation_results(
+    correlation, r_squared, p_value, output_dir, filePrefix=""
+):
     """Save the correlation results to files."""
     with (output_dir / f"{filePrefix}correlation_value.tex").open("w") as file:
         file.write(f"{correlation:.4f}")
@@ -190,6 +191,7 @@ def create_and_save_plot(array1, array2, output_dir):
     # Close the plot to free up memory
     plt.close(fig)
 
+
 def plot_linear_regression(x, y, output_dir, filename="linear_regression_plot.png"):
     index = np.arange(len(x))
     slope1, _, _, _, _ = stats.linregress(index, x)
@@ -205,13 +207,34 @@ def plot_linear_regression(x, y, output_dir, filename="linear_regression_plot.pn
 
     fig, ax1 = plt.subplots(figsize=(10, 6))
     ax1.plot(years, x, "o-", color="tab:blue", label="Normalized NCES Data")
-    ax1.plot(years, slope1 * index, color="tab:blue", linestyle="--", label="Normalized NCES Data Trend")
-    ax1.set_ylabel("Master's degrees awarded in Mathematics and statistics yearly changes\n(NCES Data)", color="tab:blue")
+    ax1.plot(
+        years,
+        slope1 * index,
+        color="tab:blue",
+        linestyle="--",
+        label="Normalized NCES Data Trend",
+    )
+    ax1.set_ylabel(
+        (
+            "Master's degrees awarded in Mathematics and statistics yearly changes\n"
+            "(NCES Data)"
+        ),
+        color="tab:blue",
+    )
 
     ax2 = ax1.twinx()
     ax2.plot(years, y, "o-", color="tab:red", label="Normalized Google searches")
-    ax2.plot(years, slope2 * index, color="tab:red", linestyle="--", label="Normalized Google searches Trend")
-    ax2.set_ylabel("Google searches for 'why do i have a migraine'\n(Google Searches)", color="tab:red")
+    ax2.plot(
+        years,
+        slope2 * index,
+        color="tab:red",
+        linestyle="--",
+        label="Normalized Google searches Trend",
+    )
+    ax2.set_ylabel(
+        "Google searches for 'why do i have a migraine'\n(Google Searches)",
+        color="tab:red",
+    )
 
     ax1.set_xlabel("Year")
     ax1.set_title("Normalized Linear Regression Comparison")
@@ -226,6 +249,7 @@ def plot_linear_regression(x, y, output_dir, filename="linear_regression_plot.pn
     # Close the plot to free up memory
     plt.close(fig)
 
+
 def create_and_save_yearly_changes_plot(array1, array2, output_dir):
     """Create and save a plot comparing the yearly changse."""
     fig, ax1 = plt.subplots(figsize=(10, 6))
@@ -234,7 +258,9 @@ def create_and_save_yearly_changes_plot(array1, array2, output_dir):
     years = np.arange(2012, 2012 + len(array1))
 
     # Example arrays for correlation calculation
-    nces_data_name = "Master's degrees awarded in Mathematics and statistics yearly changes"
+    nces_data_name = (
+        "Master's degrees awarded in Mathematics and statistics yearly changes"
+    )
     google_data_name = "Google searches for 'why do i have a migraine' yearly changes"
 
     # Primary y-axis
