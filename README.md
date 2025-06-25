@@ -74,7 +74,7 @@ This can be done automatically by running the following commands in your termina
 
 ```sh
 sudo mkdir -p /etc/nix # this creates the /etc/nix directory
-echo 'experimental-features = nix-command flakes' | sudo tee -a /etc/nix/nix.conf # creatse the nix.conf file and adds the line to the file
+echo 'experimental-features = nix-command flakes' | sudo tee -a /etc/nix/nix.conf # creates nix.conf file and adds line
 ```
 
 You're all set! You can now proceed to build the paper using Nix as described below. 🎉
