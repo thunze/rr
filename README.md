@@ -70,10 +70,11 @@ Building the paper also requires you to have [Nix flakes](https://nixos.wiki/wik
 experimental-features = nix-command flakes
 ```
 
-This can be done automatically by running the following command in your terminal:
+This can be done automatically by running the following commands in your terminal:
 
 ```sh
-echo 'experimental-features = nix-command flakes' | sudo tee -a /etc/nix/nix.conf
+sudo mkdir -p /etc/nix # this creates the /etc/nix directory
+echo 'experimental-features = nix-command flakes' | sudo tee -a /etc/nix/nix.conf # creatse the nix.conf file and adds the line to the file
 ```
 
 You're all set! You can now proceed to build the paper using Nix as described below. 🎉
@@ -96,7 +97,9 @@ nix build github:thunze/rr/1.1#paper
 You can find the built paper in `result/migraines-math-degrees.pdf`.
 
 > [!TIP]
-> If you are using **WSL** and you want to view the PDF file in your Windows environment, open Windows Explorer and navigate to the `\\wsl$\Ubuntu\home\<your-linux-username>` directory, where `<your-linux-username>` is your Linux user account name. If you executed the `nix build github:thunze/rr/1.1#paper` command in this directory, you should find the `result` directory containing the built PDF file here. Otherwise navigate to the directory where you executed the command.
+> If you are using **WSL** and you want to view the PDF file you can install a pdf viewer (e.g. [xdg-open](https://freedesktop.org/wiki/Software/xdg-utils/)) or wsl utilities ([wslu](https://github.com/wslutilities/wslu)) to view it using your windows pdf viewer. To install either of these you first have to run `sudo apt-get update` to update your local package index. Afterwards you can install xdg-utils using `sudo apt install xdg-utils` or wslu using `sudo apt install wslu`.
+- If you installed xdg-utils you can then open the pdf file by navigating to the `result` directory and running `open migraines-math-degrees.pdf`.
+- if you installed wslu you can open the `result` directory in your windows explorer by navigating to the `result` directory by running `wslview .`
 
 ### 2. Using git-annex
 
