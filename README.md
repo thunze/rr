@@ -100,10 +100,10 @@ nix build github:thunze/rr/1.1#paper
 You can find the built paper in `result/migraines-math-degrees.pdf`.
 
 > [!TIP]
-> If you are using **WSL** and you want to view the generated PDF file, you can install either a Linux PDF viewer and [xdg-open](https://freedesktop.org/wiki/Software/xdg-utils/) to view it using a Linux PDF viewer or [wslu](https://github.com/wslutilities/wslu) to view it using your default Windows PDF viewer.
+> If you are using **WSL** and you want to view the generated PDF file, you can install either a Linux PDF viewer like [evince](https://apps.gnome.org/de/Evince//) to view it or [wslu](https://github.com/wslutilities/wslu) to view it using your default Windows PDF viewer.
 >
-> - To install either of these packages, first run `sudo apt-get update` to update your local package index, then install xdg-utils via `sudo apt install xdg-utils` or wslu via `sudo apt install wslu`.
-> - If you installed xdg-utils, you can then open the PDF file using your Linux PDF viewer by navigating to the `result` directory and running `open migraines-math-degrees.pdf`.
+> - To install either of these packages, first run `sudo apt-get update` to update your local package index, then install evince via `sudo apt install evince` or wslu via `sudo apt install wslu`.
+> - If you installed evince, you can then open the PDF file by navigating to the `result` directory and running `evince migraines-math-degrees.pdf`.
 > - If you installed wslu, you can open the directory containing the PDF file in Windows Explorer by running `wslview .` in the `result` directory. You can then double-click the `migraines-math-degrees.pdf` file to open it in your default Windows PDF viewer.
 
 ### 2. Using git-annex
